@@ -24,11 +24,14 @@
     chdir: '{{sqlite_dir}}/sqlite' 
 
 - name: Replace system low version sqlite3
-  shell: >
+  shell: |
     mv /usr/bin/sqlite3  /usr/bin/sqlite3_old
-    echo "/usr/local/lib" > /etc/ld.so.conf.d/sqlite3.conf
-    ldconfig
 
+- name: Specify the SQLite library file and Exec ldconfig
+  shell: | 
+    sudo echo "/usr/local/lib" |tee /etc/ld.so.conf.d/sqlite3.conf
+    ldconfig
+    
 - name: Set soft link for sqlite
   file:
     src: '{{item.src}}'
