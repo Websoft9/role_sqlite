@@ -1,0 +1,4 @@
+# support version: 3.9 3.30 3.35
+sqlite_version: "3.35"
+
+sqlite_dir: "/opt"

@@ -1,4 +1,43 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
+- set_fact:
+    sqlite_url: "{{sqlite_version_meta[sqlite_version]}}"
 
+- name: Delete sqlite for sec_intallation
+  shell: rm -rf /opt/sqlite*
+
+- name: Download decompression sqlite3 
+  unarchive:
+    src: '{{sqlite_url}}'
+    dest: '{{sqlite_dir}}'
+    remote_src: yes
+
+- name: Rename sqlite3 
+  shell: mv {{sqlite_dir}}/sqlite-autoconf-* {{sqlite_dir}}/sqlite
+
+- name: Compile sqlite
+  shell: |
+    ./configure --prefix=/usr/local
+    make && make install
+  args:
+    chdir: '{{sqlite_dir}}/sqlite' 
+
+- name: Replace system low version sqlite3
+  shell: >
+    mv /usr/bin/sqlite3  /usr/bin/sqlite3_old
+    echo "/usr/local/lib" > /etc/ld.so.conf.d/sqlite3.conf
+    ldconfig
+
+- name: Set soft link for sqlite
+  file:
+    src: '{{item.src}}'
+    dest: '{{item.dest}}'
+    state: link
+    force: yes
+  with_items:
+    - {src: /usr/local/bin/sqlite3,dest: /usr/bin/sqlite3}
+
+- name: Check sqlite3 version
+  shell: >
+    sudo echo "sqlite3 version:" $(sqlite3 --version |awk '{print $1}') |tee -a /data/logs/install_version.txt

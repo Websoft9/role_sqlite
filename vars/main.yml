@@ -1,2 +1,7 @@
 ---
 # vars file for this role
+
+sqlite_version_meta:
+    "3.35": "https://www.sqlite.org/releaselog/3_35_5.html"
+    "3.30": "https://www.sqlite.org/releaselog/3_30_1.html"
+    "3.9":  "https://www.sqlite.org/releaselog/3_9_2.html"
