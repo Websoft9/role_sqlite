@@ -25,7 +25,7 @@
 
 - name: Replace system low version sqlite3
   shell: |
-    mv /usr/bin/sqlite3  /usr/bin/sqlite3_old
+    [ -f /usr/bin/sqlite3 ] && mv /usr/bin/sqlite3  /usr/bin/sqlite3_old
 
 - name: Specify the SQLite library file and Exec ldconfig
   shell: | 
