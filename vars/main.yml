@@ -2,6 +2,6 @@
 # vars file for this role
 
 sqlite_version_meta:
-    "3.35": "https://www.sqlite.org/releaselog/3_35_5.html"
-    "3.30": "https://www.sqlite.org/releaselog/3_30_1.html"
-    "3.9":  "https://www.sqlite.org/releaselog/3_9_2.html"
+    "3.35": "https://www.sqlite.org/2021/sqlite-autoconf-3350500.tar.gz"
+    "3.30": "https://www.sqlite.org/2019/sqlite-autoconf-3300100.tar.gz"
+    "3.9":  "https://www.sqlite.org/2015/sqlite-autoconf-3090200.tar.gz"
