@@ -24,8 +24,7 @@
     chdir: '{{sqlite_dir}}/sqlite' 
 
 - name: Replace system low version sqlite3
-  shell: |
-    [ -f /usr/bin/sqlite3 ] && mv /usr/bin/sqlite3  /usr/bin/sqlite3_old
+  shell: if [ -f /usr/bin/sqlite3 ]; then mv /usr/bin/sqlite3 /usr/bin/sqlite3_old; fi
 
 - name: Specify the SQLite library file and Exec ldconfig
   shell: | 
