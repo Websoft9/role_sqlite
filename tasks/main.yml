@@ -39,6 +39,7 @@
     force: yes
   with_items:
     - {src: /usr/local/bin/sqlite3,dest: /usr/bin/sqlite3}
+    - {src: /usr/local/lib/libsqlite3.so.0.8.6,dest: /usr/lib64/libsqlite3.so.0.8.6}
 
 - name: Check sqlite3 version
   shell: >
