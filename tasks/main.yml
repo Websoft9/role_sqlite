@@ -31,7 +31,7 @@
     sudo echo "/usr/local/lib" |tee /etc/ld.so.conf.d/sqlite3.conf
     ldconfig
     
-- name: Set soft link for sqlite
+- name: Set soft link for sqlite cli and library for develop language interface
   file:
     src: '{{item.src}}'
     dest: '{{item.dest}}'
