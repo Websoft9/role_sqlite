@@ -12,6 +12,7 @@
     src: '{{sqlite_url}}'
     dest: '{{sqlite_dir}}'
     remote_src: yes
+    validate_certs: no
 
 - name: Rename sqlite3 
   shell: mv {{sqlite_dir}}/sqlite-autoconf-* {{sqlite_dir}}/sqlite
